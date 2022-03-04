@@ -1,0 +1,23 @@
+.language-card {
+  display: flex;
+  align-items: center;
+  color: var(--light-text);
+  border-radius: 8px;
+  width: 100%;
+  padding-left: 0.5rem;
+  line-height: 2rem;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.language-icon {
+  font-size: 0.9rem;
+  margin: 0 0.8rem;
+  color: var(--light-text);
+}
+
+.language-name {
+  font-size: 0.7rem;
+  margin: 0 0.1rem;
+}

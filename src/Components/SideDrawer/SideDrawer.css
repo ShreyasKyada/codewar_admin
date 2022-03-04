@@ -1,0 +1,76 @@
+.drawer {
+  width: 10.5rem !important;
+}
+
+.MuiDrawer-paper {
+  width: 10.46rem;
+}
+
+.toolbar {
+  height: 70px !important;
+}
+
+.navigation-list {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--glass-border-color);
+}
+
+.list-item-btn {
+  width: 100%;
+  line-height: 0.5rem !important;
+  padding: 0 1rem !important;
+  margin: 0 !important;
+  transition: 0.1s all linear !important;
+  font-size: 0.7rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-item-btn-icon {
+  margin-right: 24px !important;
+  height: 28px !important;
+  width: 28px !important;
+  min-width: none !important;
+  max-width: none !important;
+  color: var(--text-color);
+}
+
+.list-text {
+  flex: 1;
+}
+
+.expand-less-more-icons {
+  height: 32px !important;
+  width: 32px !important;
+  color: var(--text-color);
+}
+
+.nested-list-btn {
+  padding-left: 18% !important;
+  line-height: 0.2rem !important;
+}
+
+.MuiDrawer-paper {
+  background-color: var(--transparent-color) !important;
+  backdrop-filter: blur(16px);
+  /* top: 69px !important; */
+}
+
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop,
+.MuiDrawer-modal {
+  top: 69px !important;
+}
+
+.mobile-bars {
+  height: 1.35rem !important;
+  width: 1.3rem !important;
+  margin-left: 0.6rem;
+  color: var(--text-color);
+}
+
+@media (max-width: 800px) {
+  .MuiDrawer-paper {
+    width: 8.8rem !important;
+  }
+}

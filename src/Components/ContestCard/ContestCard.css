@@ -1,0 +1,74 @@
+.contest-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  background: var(--transparent-color);
+  box-shadow: 0 0 10px var(--box-shadow);
+  border: 2px solid var(--glass-border-color);
+  margin: 0.8rem 0;
+  color: var(--text-color);
+  transition: all 0.2s linear;
+}
+
+.contest-card-container:hover {
+  border: 2px solid var(--hover-color);
+  color: var(--hover-color);
+  box-shadow: 0 0 0px var(--box-shadow);
+}
+
+.contest-card-sub-container {
+  width: 900px;
+}
+
+.content-card-top-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.content-card-top-container,
+.contest-collapse-container {
+  padding: 0.2rem 0.9rem;
+}
+
+.contest-card-container:hover .contest-collapse-container {
+    color: var(--text-color);
+}
+
+.content-card-title {
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  flex: 1;
+}
+
+.contest-icon-container {
+  min-width: 2rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contest-card-icons:hover {
+    color: var(--text-color);
+}
+
+.contest-collapse-container {
+  border-top: 2px solid var(--glass-border-color);
+}
+
+.contest-subtitle,
+.contest-description {
+  margin: 0.5rem 0;
+}
+
+.contest-subtitle {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.contest-description {
+  font-size: 0.56rem;
+}

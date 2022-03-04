@@ -1,0 +1,130 @@
+.admin-language-container {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
+  width: 100%;
+}
+
+.admin-language-sub-container {
+  width: 22rem;
+}
+
+.lable {
+  font-size: 1.45rem;
+  text-align: center;
+  margin: 0;
+}
+
+/* file and textbox and icon button */
+.admin-language-top-container {
+  margin: 1rem 0 1.5rem 0;
+}
+
+.add-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.upload {
+  font-size: 1.5rem !important;
+}
+
+.add-language-textbox {
+  width: 80%;
+  margin: 0rem 0.2rem 0rem 0;
+  font-size: 0.75rem;
+  padding: 0.3rem;
+  background-color: transparent;
+  color: var(--text-color);
+  transition: 0.3s all linear;
+  border: 2px solid var(--border-color);
+}
+
+.add-language-textbox:hover,
+.add-language-textbox:focus {
+  outline: none;
+  border: 2px solid var(--hover-color);
+}
+
+.add-button-icon {
+  font-size: 0.9rem !important;
+  cursor: pointer;
+}
+
+.add-language-btn {
+  padding: 0.138rem 1rem !important;
+  font-size: 0.75rem !important;
+  border-radius: 0 !important;
+}
+
+.language-file-container {
+  box-sizing: border-box;
+  height: 6rem;
+  width: 100%;
+  margin: 0.35rem 0rem;
+  border: 3px dashed var(--border-color);
+  color: var(--text-color);
+  display: flex;
+  font-size: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.demo-icon-img {
+  height: 90%;
+  max-width: 60%;
+}
+
+.icon-file-uploader {
+  display: none;
+}
+
+.language-file-container p {
+  font-size: 0.32em;
+  margin-top: 0.45rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* language show  */
+.admin-language-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  box-shadow: 0 0 10px var(--box-shadow);
+  background-color: var(--transparent-color);
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.admin-language-card-container {
+  width: calc(100% / 2);
+  box-sizing: border-box;
+  border: 1px solid #a8a8a88e;
+}
+
+.admin-language-card-container:hover {
+  box-shadow: 0 0 15px #9b9b9ba8;
+}
+
+/* Responsive css */
+@media (max-width: 600px) {
+  .admin-language-container {
+    padding: 0.6rem;
+    box-sizing: border-box;
+  }
+  .admin-language-card-container {
+    width: 100%;
+  }
+  .demo-icon-img {
+    max-width: 95%;
+  }
+}

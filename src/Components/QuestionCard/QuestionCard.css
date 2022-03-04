@@ -1,0 +1,72 @@
+.challenge-card-container {
+  box-shadow: 0 0 10px var(--box-shadow);
+  background-color: var(--transparent-color);
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid var(--glass-border-color);
+  display: flex;
+  color: var(--text-color);
+  margin: 1rem 0;
+}
+
+.challenge-card-container:hover {
+  cursor: pointer;
+  box-shadow: 0 0 15px var(--box-shadow);
+}
+
+.card-left-container {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 1.4rem;
+}
+
+.challenge-card-other,
+.challenge-card-heading {
+  margin: 0.2rem 0;
+}
+
+.challenge-card-heading {
+  font-size: 0.8rem;
+}
+
+.challenge-card-other {
+  font-size: 0.5rem;
+}
+
+.card-right-container {
+  width: 30%;
+  box-sizing: border-box;
+  padding: 0 0.5rem;
+}
+
+.btn-play,
+.button-problem {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  font-size: 0.5rem !important;
+  margin: 0.6rem 0 !important;
+}
+
+.btn-play {
+  margin-bottom: 0 !important;
+}
+
+.button-problem {
+  padding: 0rem;
+}
+
+@media (max-width: 600px) {
+  .challenge-card-container {
+    flex-direction: column;
+  }
+  .card-right-container {
+    width: 100%;
+  }
+.card-left-container {
+  padding: 0.2rem .7rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+}
