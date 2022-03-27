@@ -1,9 +1,9 @@
 import React from "react";
-// import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
 import "./QuestionCard.css";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Edit from "@mui/icons-material/Edit";
 
-const QuestionCard = ({ data }) => {
+const QuestionCard = ({ data, deleteQuestion, editQuestion }) => {
   return (
     <>
       <div className="challenge-card-container">
@@ -18,12 +18,11 @@ const QuestionCard = ({ data }) => {
           </p>
         </section>
         <section className="card-right-container">
-          <Button variant="outlined" className="btn-play" color="primary">
-            Play With Friend
-          </Button>
-          <Button variant="outlined" className="button-problem" color="primary">
-            Solve Problem
-          </Button>
+          <DeleteIcon
+            className="question-card-delete-icon"
+            onClick={deleteQuestion}
+          />
+          <Edit className="question-card-edit-icon" onClick={editQuestion} />
         </section>
       </div>
     </>

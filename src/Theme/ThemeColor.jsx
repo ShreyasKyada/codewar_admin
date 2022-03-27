@@ -5,8 +5,8 @@ const ThemeColor = (mode) => {
     palette: {
       mode: mode ? "dark" : "light",
       primary: {
-        main: "#01D8FD",
-        light: "#01D8FD",
+        main: "#03cffc",
+        light: "#03cffc",
         dark: "#01D8FD",
         contrastText: "black",
       },

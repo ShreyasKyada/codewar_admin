@@ -22,6 +22,9 @@ body.light {
   --glass-border-color: rgba(0, 0, 0, 0.185);
   --box-shadow: rgb(199, 199, 199);
   --border-color: black;
+  --scrollbar-background-color: #141414;
+  --scrollbar-thumb-color: rgb(163, 163, 163);
+  --tab-box-color: #eaeaeac9;
 }
 
 body.dark {
@@ -29,17 +32,67 @@ body.dark {
   --text-color: white;
   --primary: #f44336;
   --hover-color: #03cffc;
-  /* --hover-color-1: #01D8FD; */
-  --transparent-color: rgba(30, 30, 30, 0.6);
+  --transparent-color: #1e1e1e99;
   --transparent-color-2: rgba(30, 30, 30);
-  /* --glass-border-color: rgba(0, 0, 0, 0.226); */
   --box-shadow: rgba(85, 85, 85, 0.836);
   --border-color: white;
   --glass-border-color: rgba(255, 255, 255, 0.125);
   --background-color: rgb(37, 37, 37);
+  --scrollbar-background-color: rgb(48, 47, 47);
+  --scrollbar-thumb-color: rgb(99, 99, 99);
+  --tab-box-color: #262626;
 }
 
 .links {
   text-decoration: none;
   color: var(--text-color);
+  position: relative;
+}
+
+/* Alert */
+.snackbar-header {
+  margin: 0.15rem;
+  left: calc(50% + 5rem) !important;
+}
+
+#alert-dialog-title {
+  font-size: 0.8rem !important;
+  font-family: "Rubik", sans-serif;
+  word-wrap: break-word;
+}
+
+#alert-dialog-description {
+  font-family: "Rubik", sans-serif;
+  font-size: 0.6rem !important;
+}
+
+.disagree-btn,
+.agree-btn {
+  font-size: 0.6rem !important;
+  font-family: "Rubik", sans-serif;
+}
+
+/* dialog-box */
+.css-1qxadfk-MuiPaper-root-MuiDialog-paper {
+  margin: 0.5rem !important;
+  font-family: "Rubik", sans-serif;
+}
+
+
+/* Modify scroll bar */
+::-webkit-scrollbar {
+  width: 7.5px;
+  background-color: var(--mode);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-color);
+  border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+  .snackbar-header {
+    left: 0 !important;
+  }
 }

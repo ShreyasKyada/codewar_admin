@@ -1,13 +1,27 @@
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 import { useContext, useEffect, useRef, useState } from "react";
 import { globalDataContext } from "../../Context/GlobalDataContext";
 import appRef, { storage } from "../../Firebase/Firebase";
 
 const AddLanguagesLogic = () => {
   const inputFileRef = useRef();
-  const { setIsLoadingState, setSnackbarData } = useContext(globalDataContext);
+  const {
+    setIsLoadingState,
+    setSnackbarData,
+    isConfirmDeletionState,
+    setOpenAlertBox,
+    setAlertBoxText,
+    setIsConfirmDeletionState,
+  } = useContext(globalDataContext);
   const [img, setImg] = useState();
   const [allLanguages, setAllLanguages] = useState({});
+  const [isSkeletonLoading, setIsSkeletonLoading] = useState(true);
+  const [deleteId, setDeleteId] = useState([]);
   const [newLanguage, setNewLanguage] = useState({
     language_name: "",
     icon_path: "",
@@ -18,7 +32,10 @@ const AddLanguagesLogic = () => {
 
     if (cleanUp) {
       appRef.child("/languages").on("value", (snap) => {
-        setAllLanguages(snap.val());
+        if (cleanUp) {
+          setAllLanguages(snap.val());
+          setIsSkeletonLoading(false);
+        }
       });
     }
 
@@ -72,7 +89,7 @@ const AddLanguagesLogic = () => {
               return;
             }
           });
-        }y
+        }
         return flag;
       });
     return data;
@@ -109,24 +126,51 @@ const AddLanguagesLogic = () => {
   const sendNewLanguageIconData = async () => {
     // onclick add icon button
     // check the language is already available or not
-
-    if (!newLanguage.language_name && !img) {
-      setSnackbarData("Please fill the data first!!", "error");
-    } else if (!newLanguage.language_name) {
-      setSnackbarData("Please enter a language name", "error");
-    } else if (!img) {
-      setSnackbarData("Please select a icon file", "error");
-    } else {
-      setIsLoadingState(true);
-      const isLanguageAvailable = await isLanguageAvailableFun();
-
-      if (isLanguageAvailable) {
-        setSnackbarData("This language is already entered", "error");
+    try {
+      if (!newLanguage.language_name && !img) {
+        setSnackbarData("Please fill the data first!!", "error");
+      } else if (!newLanguage.language_name) {
+        setSnackbarData("Please enter a language name", "error");
+      } else if (!img) {
+        setSnackbarData("Please select a icon file", "error");
       } else {
-        await uploadFiles(inputFileRef.current.files[0]);
+        setIsLoadingState(true);
+        const isLanguageAvailable = await isLanguageAvailableFun();
+
+        if (isLanguageAvailable) {
+          setSnackbarData("This language is already entered", "error");
+        } else {
+          await uploadFiles(inputFileRef.current.files[0]);
+        }
+        setIsLoadingState(false);
       }
-      setIsLoadingState(false);
+    } catch (error) {
+      console.log(error);
     }
+  };
+
+  useEffect(async () => {
+    if (isConfirmDeletionState === true) {
+      document.getElementById(deleteId[0]).classList.add("disabled");
+      setIsLoadingState(true);
+      await appRef.child(`languages/${deleteId[0]}`).remove();
+      await appRef.child(`languages_questions/${deleteId[1]}`).remove(() => {
+        setSnackbarData("Language deleted successfully!!", "success");
+        setIsLoadingState(false);
+      });
+      const storageRef = ref(storage, `/language_icons/${deleteId[1]}/`);
+      deleteObject(storageRef);
+      setIsConfirmDeletionState(false);
+    }
+  }, [isConfirmDeletionState]);
+
+  const deleteBtnWaitingConfirmation = (id, langName) => {
+    setDeleteId([id, langName]);
+    setOpenAlertBox(true);
+    setAlertBoxText({
+      heading: "Are you sure want to delete this language?",
+      body: "once you deleted the language then it will permanently deleted.and all questions will remove related to this language!! so be careful.!!",
+    });
   };
 
   return {
@@ -138,6 +182,8 @@ const AddLanguagesLogic = () => {
     newLanguageChangeState,
     sendNewLanguageIconData,
     allLanguages,
+    isSkeletonLoading,
+    deleteBtnWaitingConfirmation,
   };
 };
 

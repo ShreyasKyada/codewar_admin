@@ -5,11 +5,6 @@
   bottom: -10px;
 }
 
-/* Alert */
-.snackbar-header {
-  margin: 0.15rem;
-}
-
 .alert {
   font-size: 0.55rem !important;
 }
@@ -24,7 +19,7 @@
   user-select: none;
   border-bottom: 1px solid var(--glass-border-color);
   position: relative;
-  height: 70px;
+  height: 60px;
   flex-direction: column !important;
   position: relative;
 }
@@ -69,7 +64,7 @@
 
 .search-box-icon-container {
   display: flex;
-  padding: 0.21rem 0.25rem;
+  padding: 0.18rem 0.25rem;
   transition: all 0.2s linear;
 }
 
@@ -81,7 +76,7 @@
   top: 3px;
   left: 3px;
   height: 100%;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--text-color);
 }
 
@@ -115,7 +110,7 @@
 }
 
 .theme-icon-moon {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   cursor: pointer;
 }
 
@@ -123,13 +118,13 @@
 .list-item-btn-navbar {
   height: 1.5rem;
   padding: 0 !important;
-  margin: 0 1rem 0 0 !important;
+  margin: 0 0.5rem 0 0 !important;
   transition: 0.1s all linear !important;
   width: fit-content !important;
 }
 
 .person-icon {
-  font-size: 1rem !important;
+  font-size: 0.95rem !important;
   color: var(--text-color);
 }
 
@@ -144,6 +139,7 @@
   text-align: center !important;
   justify-content: center;
   transition: 1s all linear !important;
+  min-width: 37px !important;
 }
 
 .list-item-text-navbar {
@@ -153,11 +149,29 @@
   letter-spacing: 1px;
 }
 
+.admin-logout-btn {
+  font-size: 0.85rem !important;
+  cursor: pointer;
+  color: var(--text-color);
+  margin-right: 0.6rem;
+  transition: 0.2s all linear;
+}
+
+.admin-logout-btn:hover {
+  color: var(--hover-color);
+}
+
 @media (max-width: 800px) {
   .appbar {
     flex-direction: row !important;
     align-items: center;
     justify-content: center;
+  }
+  .admin-logout-btn {
+    margin: 0;
+  }
+  .icon-container {
+    width: 2rem;
   }
   .search-icon-container {
     align-self: center;

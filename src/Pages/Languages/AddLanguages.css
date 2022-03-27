@@ -109,10 +109,33 @@
   width: calc(100% / 2);
   box-sizing: border-box;
   border: 1px solid #a8a8a88e;
+  position: relative;
 }
 
 .admin-language-card-container:hover {
   box-shadow: 0 0 15px #9b9b9ba8;
+}
+
+.language-card-delete-btn {
+  color: var(--text-color);
+  position: absolute;
+  font-size: 26px !important;
+  float: right !important;
+  background-color: var(--mode) !important;
+  padding: 0 0.2rem;
+  transition: color 0.2s linear !important;
+  cursor: pointer;
+  top: 0;
+  right: 10px;
+  top: calc(50% - 13px);
+}
+
+.language-card-delete-btn:hover {
+  color: rgb(255, 72, 72) !important;
+}
+
+.disabled {
+  opacity: 0.15 !important;
 }
 
 /* Responsive css */
@@ -126,5 +149,13 @@
   }
   .demo-icon-img {
     max-width: 95%;
+  }
+  .add-language-btn {
+    font-size: 0.6rem !important;
+    padding: 0.2rem 1rem !important;
+  }
+  .add-language-textbox {
+    font-size: 0.6rem !important;
+    padding: 0.28rem;
   }
 }

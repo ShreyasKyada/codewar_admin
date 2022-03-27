@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import "./AddLanguages.css";
-import { Button } from "@mui/material";
+import { Button, Skeleton } from "@mui/material";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import LanguageCard from "../../Components/LanguageCard/LanguageCard";
 import { globalDataContext } from "../../Context/GlobalDataContext";
 import AddLanguageLogic from "./AddLanguagesLogic";
+import SubHeader from "../../Components/SubHeader/SubHeader";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const AddLanguages = () => {
   const {
@@ -17,12 +19,27 @@ const AddLanguages = () => {
     newLanguageChangeState,
     sendNewLanguageIconData,
     allLanguages,
+    isSkeletonLoading,
+    deleteBtnWaitingConfirmation,
   } = AddLanguageLogic();
 
-  const { isLoadingState } = useContext(globalDataContext);
+  const { isLoadingState, setActiveTab } = useContext(globalDataContext);
+
+  document.title = `Add language | CodeWar`;
+  useEffect(() => {
+    setActiveTab("Languages");
+  }, []);
 
   return (
     <>
+      <SubHeader
+        subHeaderNevigationLink={{
+          AddLanguage: {
+            name: "Add Language",
+            link: "/AddLanguage",
+          },
+        }}
+      />
       <div className="admin-language-container">
         <div className="admin-language-sub-container">
           {/* <h3 className="lable">Add Language</h3> */}
@@ -47,7 +64,6 @@ const AddLanguages = () => {
                 >
                   Add
                 </Button>
-                {/* <AddCircleOutlineIcon className="add-button" /> */}
               </div>
 
               <div
@@ -73,20 +89,80 @@ const AddLanguages = () => {
             </form>
           </div>
 
-          <div className="admin-language-list">
-            {Object.keys(allLanguages).map((id) => {
-              return allLanguages[id].language_name ? (
-                <div key={id} className="admin-language-card-container">
-                  <LanguageCard
-                    iconURL={allLanguages[id].icon_path}
-                    languageName={allLanguages[id].language_name}
-                  />
-                </div>
+          {isSkeletonLoading ? (
+            <div className="admin-language-list">
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                className="admin-language-card-container"
+                height={60}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                className="admin-language-card-container"
+                height={60}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                className="admin-language-card-container"
+                height={60}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                className="admin-language-card-container"
+                height={60}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                className="admin-language-card-container"
+                height={60}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                className="admin-language-card-container"
+                height={60}
+              />
+            </div>
+          ) : (
+            <div className="admin-language-list">
+              {allLanguages ? (
+                Object.keys(allLanguages).map((id) => {
+                  return (
+                    allLanguages[id].language_name && (
+                      <div
+                        key={id}
+                        className="admin-language-card-container"
+                        id={`${id}`}
+                      >
+                        <LanguageCard
+                          iconURL={allLanguages[id].icon_path}
+                          languageName={allLanguages[id].language_name}
+                        />
+                        <DeleteOutlineIcon
+                          className="language-card-delete-btn"
+                          onClick={() =>
+                            deleteBtnWaitingConfirmation(
+                              id,
+                              allLanguages[id].language_name
+                            )
+                          }
+                        />
+                      </div>
+                    )
+                  );
+                })
               ) : (
-                ""
-              );
-            })}
-          </div>
+                <h5 style={{ textAlign: "center", width: "100%" }}>
+                  Nothing to show
+                </h5>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </>

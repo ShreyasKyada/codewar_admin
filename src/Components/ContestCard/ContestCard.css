@@ -33,7 +33,13 @@
 }
 
 .contest-card-container:hover .contest-collapse-container {
-    color: var(--text-color);
+  color: var(--text-color);
+}
+
+.contest-btn {
+  font-size: 0.5rem !important;
+  margin: 0 0.6rem !important;
+  align-self: flex-start;
 }
 
 .content-card-title {
@@ -50,8 +56,12 @@
   justify-content: space-between;
 }
 
+.contest-card-icons {
+  margin: 0 0.2rem;
+}
+
 .contest-card-icons:hover {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
 .contest-collapse-container {
@@ -71,4 +81,24 @@
 
 .contest-description {
   font-size: 0.56rem;
+}
+
+@media (max-width: 800px) {
+  .contest-card-container {
+    width: 90%;
+  }
+  .content-card-top-container {
+    flex-direction: column;
+  }
+  .contest-btn {
+    width: fit-content !important;
+    margin-left: 0 !important;
+    margin-bottom: 0.4rem !important;
+  }
+  .contest-card-icons {
+    margin: 0 0.1rem;
+  }
+  .content-card-title {
+    align-self: flex-start;
+  }
 }

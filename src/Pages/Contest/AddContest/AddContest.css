@@ -9,6 +9,16 @@
   padding: 1rem 0.3rem;
 }
 
+.switch-formgrp {
+  float: right !important;
+  margin-bottom: 0.6rem !important;
+}
+
+.formgrp-label .MuiTypography-root {
+  font-size: 0.8rem !important;
+  color: var(--text-color);
+}
+
 .contest-heading-container {
   width: 100%;
   display: flex;
@@ -33,6 +43,10 @@
 
 .contest-start-at {
   margin-right: 0.8rem !important ;
+}
+
+.contest-type {
+  width: 100%;
 }
 
 .add-contest-description {
@@ -72,13 +86,19 @@
   margin: 1.5rem 0;
 }
 
+.add-contest-button button {
+  font-size: 0.65rem !important;
+}
+
 @media (max-width: 800px) {
   .contest-heading-container {
     flex-direction: column;
     margin-bottom: 0;
   }
   .contest-name-textbox,
-  .duration-textbox,.contest-start-at,.contest-end-at {
+  .duration-textbox,
+  .contest-start-at,
+  .contest-end-at {
     width: 100%;
     margin: 0.5rem 0 !important;
   }

@@ -13,21 +13,32 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { AiOutlineSearch } from "react-icons/ai";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import { Alert, Snackbar } from "@mui/material";
 import { globalDataContext } from "../../Context/GlobalDataContext";
+import { MdLogout } from "react-icons/md";
+import { authContext } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ isOpenDrawer, mobileView, toggleDrawer }) => {
   const { toggleDarkMode, isDarkMode } = useContext(themeContext);
-  const {
-    isLoadingState,
-    showHeaderSnackbar,
-    setShowHeaderSnackbar,
-    headerErrorText,
-    severity,
-  } = useContext(globalDataContext);
+  const { setValidUser, username } = useContext(authContext);
+  const { isLoadingState } = useContext(globalDataContext);
+  const nevigation = useNavigate();
 
-  const hideSnackbar = () => {
-    setShowHeaderSnackbar(false);
+  const logOut = () => {
+    const d = new Date();
+    d.setTime(d.getTime() + 30 * 24 * 60 * 60 * 1000);
+    const userInfo = {
+      isvalidUser: "false",
+      username: "",
+    };
+    document.cookie =
+      "CodeWarAdminLogin=" +
+      JSON.stringify(userInfo) +
+      ";" +
+      d.toUTCString() +
+      ";";
+    setValidUser(false);
+    nevigation("/");
   };
 
   return (
@@ -36,31 +47,6 @@ const Navbar = ({ isOpenDrawer, mobileView, toggleDrawer }) => {
         <div className="progressbar-container">
           {isLoadingState ? <LinearProgress /> : ""}
         </div>
-        <Snackbar
-          open={showHeaderSnackbar}
-          autoHideDuration={4000}
-          onClose={hideSnackbar}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-          className="snackbar-header"
-        >
-          {severity === "error" ? (
-            <Alert
-              severity="error"
-              variant="filled"
-              className="alert snackbar-alert"
-            >
-              {headerErrorText}
-            </Alert>
-          ) : (
-            <Alert
-              severity="success"
-              variant="filled"
-              className="alert snackbar-alert"
-            >
-              {headerErrorText}
-            </Alert>
-          )}
-        </Snackbar>
         {!mobileView ? (
           isOpenDrawer ? (
             <CloseRoundedIcon
@@ -115,11 +101,12 @@ const Navbar = ({ isOpenDrawer, mobileView, toggleDrawer }) => {
               <ListItemIcon className="list-item-icon-navbar">
                 <PersonOutlineIcon className="person-icon" />
               </ListItemIcon>
-              <p className="list-item-text-navbar">shreyas</p>
+              <p className="list-item-text-navbar">{username && username}</p>
             </ListItemButton>
           ) : (
             ""
           )}
+          <MdLogout className="admin-logout-btn" onClick={logOut} />
         </div>
       </AppBar>
     </>

@@ -14,7 +14,7 @@ const SideDrawerLogic = () => {
 
     if (cleanUp) {
       appRef.child("/languages").on("value", (snap) => {
-        setSideLanguages(snap.val());
+        if (cleanUp) setSideLanguages(snap.val());
       });
     }
 

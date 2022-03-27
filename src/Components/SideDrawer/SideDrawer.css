@@ -1,13 +1,44 @@
 .drawer {
-  width: 10.5rem !important;
+  width: 10.2rem !important;
+}
+
+.active {
+  color: var(--hover-color) !important;
+  position: relative;
+  transition: all 0.2s linear;
+  background-color: var(--tab-box-color) !important;
+}
+
+.active .list-item-btn-icon {
+  color: var(--hover-color) !important;
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: var(--hover-color);
 }
 
 .MuiDrawer-paper {
-  width: 10.46rem;
+  width: 10.2rem;
 }
 
 .toolbar {
-  height: 70px !important;
+  min-height: 59px !important;
+  height: 0.5rem !important;
+  width: 5.5rem !important;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.toolbar img {
+  height: 100%;
+  width: 100%;
+  padding: 0 !important;
 }
 
 .navigation-list {
@@ -21,7 +52,7 @@
   padding: 0 1rem !important;
   margin: 0 !important;
   transition: 0.1s all linear !important;
-  font-size: 0.7rem !important;
+  font-size: 0.65rem !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,11 +60,15 @@
 
 .list-item-btn-icon {
   margin-right: 24px !important;
-  height: 28px !important;
+  height: 25px !important;
   width: 28px !important;
   min-width: none !important;
   max-width: none !important;
-  color: var(--text-color);
+  color: var(--text-color) !important;
+}
+
+.list-item-btn path {
+  stroke: var(--text-color) !important;
 }
 
 .list-text {
@@ -54,12 +89,12 @@
 .MuiDrawer-paper {
   background-color: var(--transparent-color) !important;
   backdrop-filter: blur(16px);
-  /* top: 69px !important; */
+  /* top: 60px !important; */
 }
 
 .css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop,
 .MuiDrawer-modal {
-  top: 69px !important;
+  top: 60px !important;
 }
 
 .mobile-bars {
@@ -72,5 +107,6 @@
 @media (max-width: 800px) {
   .MuiDrawer-paper {
     width: 8.8rem !important;
+    top: 60px !important;
   }
 }

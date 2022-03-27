@@ -1,13 +1,24 @@
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useContext, useEffect, useRef, useState } from "react";
-import { globalDataContext } from "../../../Context/GlobalDataContext";
-import appRef, { storage } from "../../../Firebase/Firebase";
+import { useNavigate } from "react-router-dom";
+import { globalDataContext } from "../../Context/GlobalDataContext";
+import appRef, { storage } from "../../Firebase/Firebase";
 
 const AddCertificateLogic = () => {
   const inputFileRef = useRef();
-  const { setIsLoadingState, setSnackbarData } = useContext(globalDataContext);
+  const {
+    setIsLoadingState,
+    setSnackbarData,
+    setOpenAlertBox,
+    setAlertBoxText,
+    isConfirmDeletionState,
+    setIsConfirmDeletionState,
+  } = useContext(globalDataContext);
   const [img, setImg] = useState();
+  const [deleteCertificateId, setDeleteCertificateId] = useState([]);
   const [allCertificate, setAllCertificate] = useState({});
+  const [isSkeletonLoading, setIsSkeletonLoading] = useState(true);
+  const navigate = useNavigate();
   const [newCertificate, setNewCertificate] = useState({
     certificate_name: "",
     certificate_icon_path: "",
@@ -17,8 +28,11 @@ const AddCertificateLogic = () => {
     let cleanUp = true;
 
     if (cleanUp) {
+      setIsLoadingState(true);
       appRef.child("/certificate").on("value", (snap) => {
         setAllCertificate(snap.val());
+        setIsLoadingState(false);
+        setIsSkeletonLoading(false);
       });
     }
 
@@ -130,6 +144,35 @@ const AddCertificateLogic = () => {
     }
   };
 
+  const manageQuestions = (certificate_name) => {
+    navigate(`/questions-list/certificate/${certificate_name}`);
+  };
+
+  useEffect(async () => {
+    if (deleteCertificateId[0] && isConfirmDeletionState) {
+      setIsLoadingState(true);
+
+      await appRef.child(`certificate/${deleteCertificateId[0]}`).remove();
+      await appRef
+        .child(`certificate_questions/${deleteCertificateId[1]}`)
+        .remove(() => {
+          setSnackbarData(`"${deleteCertificateId[1]}" deleted!!!`, "success");
+          setIsLoadingState(false);
+          setIsConfirmDeletionState(false);
+        });
+    }
+  }, [isConfirmDeletionState]);
+
+  const deleteCertificate = (id, certificateName) => {
+    setDeleteCertificateId([id, certificateName]);
+    setOpenAlertBox(true);
+    setAlertBoxText({
+      heading: `Are you sure want to delete "${certificateName}"`,
+      body: "Once you deleted the certificate then it will permanently deleted and all questions related to this certificate will be also delete. so be careful.!!",
+    });
+    console.log("Delete certi");
+  };
+
   return {
     inputFileRef,
     fileChanged,
@@ -139,6 +182,9 @@ const AddCertificateLogic = () => {
     newCertificateStateChange,
     sendNewCertificateData,
     allCertificate,
+    isSkeletonLoading,
+    manageQuestions,
+    deleteCertificate,
   };
 };
 

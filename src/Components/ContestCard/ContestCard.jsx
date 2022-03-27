@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./ContestCard.css";
-import { Collapse } from "@mui/material";
-import {  MdEdit, MdDelete } from "react-icons/md";
+import { Button, Collapse } from "@mui/material";
+import { MdEdit, MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 
-const ContestCard = ({ data }) => {
+const ContestCard = ({ data, deleteContest, editContest }) => {
   const [isCollapse, setIsCollapse] = useState(false);
 
   const toggleCollapseState = () => {
@@ -19,16 +20,23 @@ const ContestCard = ({ data }) => {
         >
           <p className="content-card-title">{data.contest_name}</p>
           <div className="contest-icon-container">
-            <MdEdit className="contest-card-icons" />
-            <MdDelete className="contest-card-icons" />
+            <Button
+              variant="outlined"
+              component={Link}
+              to={`/questions-list/contest/${data.contest_name}`}
+              className="contest-btn"
+              color="primary"
+            >
+              Manage questions
+            </Button>
+            <MdEdit className="contest-card-icons" onClick={editContest} />
+            <MdDelete className="contest-card-icons" onClick={deleteContest} />
           </div>
         </div>
         <Collapse in={isCollapse} timeout={700} unmountOnExit>
           <div className="contest-collapse-container">
             <div className="contest-subtitle">Description</div>
-            <div className="contest-description">
-              {data.description}
-            </div>
+            <div className="contest-description">{data.description}</div>
           </div>
         </Collapse>
       </div>

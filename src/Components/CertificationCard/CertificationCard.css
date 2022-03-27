@@ -17,6 +17,12 @@
   position: relative;
   overflow: hidden;
   color: var(--text-color);
+  transition: 0.2s all linear;
+}
+
+.certification-card:hover {
+  border: 2px solid var(--hover-color);
+  box-shadow: 0 0 20px var(--hover-color);
 }
 
 .certificate-icon {
@@ -40,6 +46,18 @@
   font-size: 0.5rem !important;
   margin: 0.6rem 0 !important;
   align-self: flex-start;
+}
+
+.certificate-card-icons {
+  font-size: 0.9rem !important;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  transition: 0.2s all linear;
+}
+
+.certificate-card-icons:hover {
+  color: rgb(241, 67, 67);
 }
 
 @media (max-width: 852px) {

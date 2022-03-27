@@ -1,7 +1,7 @@
 .manage-question-container {
   width: 100%;
   display: flex;
-  padding: 1rem 5%;
+  /* padding: 1rem 5%; */
   box-sizing: border-box;
   position: relative;
   flex-direction: column;
@@ -9,10 +9,30 @@
 }
 
 .manage-btn-conatiner {
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+  margin-top: 0.7rem;
+  margin-bottom: 0.5rem;
 }
 
 .manage-question-sub-container {
   max-width: 100%;
+}
+
+.challenge-card-container-skeleton {
+  box-shadow: 0 0 10px var(--box-shadow);
+  /* background-color: var(--transparent-color) !important; */
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid var(--glass-border-color);
+  margin: 1rem 0;
+  padding: 0.6rem 0;
+}
+
+@media (max-width: 800px) {
+  .manage-question-container {
+    padding: 0.6rem !important;
+  }
+  .manage-btn-conatiner .add-question-btn {
+    width: 100% !important;
+    font-size: 0.65rem !important;
+  }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./SideDrawer.css";
 import ListItemButton from "@mui/material/ListItemButton";
 import Collapse from "@mui/material/Collapse";
@@ -6,13 +6,18 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Drawer, Toolbar } from "@mui/material";
 import { RiBracesFill } from "react-icons/ri";
+import { GrCertificate } from "react-icons/gr";
+import { BsTrophy } from "react-icons/bs";
 import { MdOutlineQuestionAnswer } from "react-icons/md";
 import SideDrawerLogic from "./SideDrawerLogic";
 import { Link } from "react-router-dom";
+import { globalDataContext } from "../../Context/GlobalDataContext";
 
 const SideDrawer = ({ mobileView, isOpenDrawer, toggleDrawer }) => {
   const { handleClick, open, getObj, defaultObj, sideLanguages } =
     SideDrawerLogic();
+
+  const { activeTab } = useContext(globalDataContext);
 
   return (
     <>
@@ -25,10 +30,29 @@ const SideDrawer = ({ mobileView, isOpenDrawer, toggleDrawer }) => {
         onClose={toggleDrawer(false)}
       >
         <div className="sidedrawer">
-          {mobileView ? <Toolbar className="toolbar">Shreyas </Toolbar> : ""}
+          {mobileView ? (
+            <Toolbar className="toolbar">
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/Logo.svg?alt=media&token=6d889c90-3c92-4f71-860a-f94ddf636275"
+                alt="Logo"
+              />
+            </Toolbar>
+          ) : (
+            ""
+          )}
           <div className="navigation-list">
-            <Link to={"/add-languages"} className="links">
-              <ListItemButton className="list-item-btn">
+            <Link
+              to={"/add-languages"}
+              className="links"
+              onClick={toggleDrawer(false)}
+            >
+              <ListItemButton
+                className={
+                  activeTab === "Languages"
+                    ? "list-item-btn active"
+                    : "list-item-btn"
+                }
+              >
                 <RiBracesFill className="list-item-btn-icon" />
                 <p className="list-text">Languages</p>
               </ListItemButton>
@@ -44,20 +68,28 @@ const SideDrawer = ({ mobileView, isOpenDrawer, toggleDrawer }) => {
               )}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
-              {Object.keys(sideLanguages).map((id) => {
+              {sideLanguages && Object.keys(sideLanguages).map((id) => {
                 return sideLanguages[id].language_name ? (
                   <Link
                     key={id}
                     className="links"
+                    onClick={toggleDrawer(false)}
                     to={`/questions-list/languages/${sideLanguages[id].language_name}`}
                   >
-                    <ListItemButton className="nested-list-btn list-item-btn">
+                    <ListItemButton
+                      className={
+                        activeTab ===
+                        `Question/${sideLanguages[id].language_name}`
+                          ? "nested-list-btn list-item-btn active"
+                          : "nested-list-btn list-item-btn"
+                      }
+                    >
                       <img
                         className="list-item-btn-icon"
                         alt="img"
                         src={sideLanguages[id].icon_path}
                       />
-                      <p>{sideLanguages[id].language_name}</p>
+                      <p>{sideLanguages[id].language_name} </p>
                     </ListItemButton>
                   </Link>
                 ) : (
@@ -65,15 +97,35 @@ const SideDrawer = ({ mobileView, isOpenDrawer, toggleDrawer }) => {
                 );
               })}
             </Collapse>
-            <Link to={"/contest"} className="links">
-              <ListItemButton className="list-item-btn">
-                <RiBracesFill className="list-item-btn-icon" />
+            <Link
+              to={"/contest"}
+              className="links"
+              onClick={toggleDrawer(false)}
+            >
+              <ListItemButton
+                className={
+                  activeTab === "Contest"
+                    ? "list-item-btn active"
+                    : "list-item-btn"
+                }
+              >
+                <BsTrophy className="list-item-btn-icon" />
                 <p className="list-text">Contest</p>
               </ListItemButton>
             </Link>
-            <Link to={"/addcertificate"} className="links">
-              <ListItemButton className="list-item-btn">
-                <RiBracesFill className="list-item-btn-icon" />
+            <Link
+              to={"/addcertificate"}
+              className="links"
+              onClick={toggleDrawer(false)}
+            >
+              <ListItemButton
+                className={
+                  activeTab === "Certificate"
+                    ? "list-item-btn active"
+                    : "list-item-btn"
+                }
+              >
+                <GrCertificate className="list-item-btn-icon" />
                 <p className="list-text">Certification</p>
               </ListItemButton>
             </Link>

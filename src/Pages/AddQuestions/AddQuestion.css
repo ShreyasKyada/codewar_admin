@@ -19,7 +19,11 @@
 .textbox,
 .MuiInputBase-formControl,
 .MuiInputLabel-root {
-  font-size: 0.65rem !important;
+  font-size: 0.55rem !important;
+}
+
+.test-case-input-textbox .MuiOutlinedInput-input {
+  padding: 15px !important;
 }
 
 .heading-textbox,
@@ -33,22 +37,19 @@
   width: 33%;
 }
 
+.difficulty-level .MuiSvgIcon-root {
+  font-size: 1.3rem !important;
+}
+
 .level-menu-item {
   font-size: 0.65rem !important;
 }
 
 .editor-container {
   background-color: var(--transparent-color);
-  border: 2px solid var(--glass-border-color);
-  box-shadow: 0 0 15px var(--box-shadow);
   margin: 1.5rem 0;
-  transition: border 0.1s linear;
-}
-
-.editor-class {
-  min-height: 17rem !important;
-  color: var(--text-color);
-  padding: 0 0.5rem;
+  width: 24rem;
+  height: 0;
   transition: border 0.1s linear;
 }
 
@@ -56,13 +57,12 @@
   border: 2px solid var(--hover-color);
 }
 
-.editor-container:focus-within .toolbar-class {
-  border-bottom: 2px solid var(--hover-color);
+.editor-container:hover {
+  border-color: var(--border-color);
 }
 
-.editor-container:hover:not(.editor-container:focus-within),
-.editor-container:hover:not(.editor-container:focus-within) .toolbar-class {
-  border-color: var(--border-color);
+.editor-skeleton {
+  border: none;
 }
 
 .toolbar-class {
@@ -108,12 +108,16 @@
 }
 
 .test-case-container {
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
+  /* margin-top: 2rem; */
+  margin: 1.5rem 0;
   border: 2px solid var(--glass-border-color);
   position: relative;
-  padding: 1rem 0.7rem 0.7rem 0.7rem;
+  padding: 1rem 0.7rem 0.4rem 0.7rem;
   transition: border 0.1s linear;
+}
+
+.test-case-container:not(:last-child) {
+  margin-bottom: 1.8rem !important;
 }
 
 .test-case-container:focus-within {
@@ -121,6 +125,52 @@
 }
 
 .test-case-container:focus-within .test-case-label {
+  color: var(--hover-color);
+}
+
+#test-Cases-id {
+  border-top: 2px solid var(--border-color);
+  position: relative;
+}
+
+#test-Cases-id::after {
+  content: "Inserted data";
+  background-color: var(--mode);
+  position: absolute;
+  top: -13px;
+  margin-left: 40%;
+  margin-right: 3%;
+  padding: 0 10px;
+  font-size: 20px;
+  color: var(--text-color);
+}
+
+.test-case-delete-icon,
+.test-case-add-icon {
+  color: var(--text-color);
+  font-size: 27px !important;
+  background-color: var(--mode) !important;
+  padding: 0 0.2rem;
+  position: absolute;
+  top: -15px;
+  right: 15px;
+  transition: color 0.3s linear !important;
+  cursor: pointer;
+}
+
+.test-case-delete-icon:hover {
+  color: red;
+}
+
+.test-case-edit-icon {
+  right: 52px;
+}
+
+.test-case-edit-icon:hover {
+  color: var(--hover-color);
+}
+
+.test-case-add-icon:hover {
   color: var(--hover-color);
 }
 
@@ -139,7 +189,7 @@
   background-color: var(--mode) !important;
   padding: 0 0.3rem;
   position: absolute;
-  top: -29px;
+  top: -30px;
   left: 15px;
   transition: color 0.5s linear;
 }
@@ -147,12 +197,124 @@
 .test-case-input-textbox,
 .test-case-output-textbox {
   width: 100%;
-  margin: 0.5rem 0 !important;
+  margin: 0.4rem 0 !important;
 }
 
 .add-question-btn {
   font-size: 0.65rem !important;
   float: right;
+}
+
+.add-test-case-btn-container {
+  height: 1.5rem;
+}
+
+.radio-grp {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: flex-end !important;
+  flex-direction: row !important;
+  float: right !important;
+}
+
+.form-control {
+  float: right !important;
+}
+
+.sample-test-radio-btn .MuiTypography-root {
+  font-size: 0.65rem !important;
+  color: var(--text-color);
+}
+
+.sample-test-radio-btn .MuiSvgIcon-root {
+  font-size: 0.8rem !important;
+}
+
+/* text editor */
+.tox-notification {
+  display: none !important; 
+  visibility: hidden !important;
+}
+
+.tox-statusbar__branding {
+  display: none !important;
+}
+
+.tox .tox-edit-area__iframe {
+  background-color: #1e1e1e !important;
+  color: white !important;
+}
+
+.tox-menubar button {
+  color: white !important;
+}
+
+.tox-menubar {
+  background-color: #1e1e1e !important;
+}
+
+.tox .tox-mbtn:hover:not(:disabled):not(.tox-mbtn--active) {
+  background: #3f3f3f !important;
+}
+
+.tox .tox-mbtn--active {
+  background: #3f3f3f !important;
+}
+
+.tox .tox-menu {
+  background-color: #1c1c1c !important;
+  color: white !important;
+}
+
+.tox-collection__item {
+  color: white !important;
+}
+
+.tox-collection__item--active {
+  background: #3f3f3f !important;
+}
+
+.tox-menu {
+  border: 1px solid #464646 !important;
+}
+
+.tox-toolbar-overlord,
+.tox-toolbar__primary,
+.tox-toolbar__group,
+.tox-toolbar__group button,
+.tox-icon {
+  background-color: #1c1c1c !important;
+  border-color: #464646 !important;
+  color: white !important;
+}
+
+.tox-toolbar__primary {
+  border-bottom: 1px solid #464646 !important;
+}
+
+.tox .tox-tbtn--disabled svg,
+.tox .tox-tbtn svg {
+  fill: white !important;
+}
+
+.tox .tox-collection--list .tox-collection__item--enabled,
+.tox .tox-collection--list .tox-collection__item--enabled {
+  background-color: #6c6c6c !important;
+}
+
+.tox-statusbar {
+  background-color: #1f1f1f !important;
+}
+
+.tox-statusbar__path .tox-statusbar__path-item,
+.tox-statusbar__wordcount,
+.tox-collection__item-accessory,
+.tox-statusbar__path button {
+  color: white !important;
+}
+
+.tox-tinymce {
+  border: none !important;
 }
 
 @media (max-width: 500px) {
@@ -170,5 +332,26 @@
   }
   .MuiPaper-elevation8 {
     left: 9px !important;
+  }
+  .editor-container {
+    box-sizing: border-box;
+    width: 95vw !important;
+  }
+  .add-test-case-btn-container {
+    display: flex;
+    flex-direction: column;
+    height: 2.5rem !important;
+  }
+  .add-question-btn {
+    font-size: 0.6rem !important;
+    width: 100% !important;
+    margin-bottom: 1rem !important;
+  }
+  #test-Cases-id::after {
+    transform: translateX(54%);
+    margin: 0;
+  }
+  .radio-grp {
+    justify-content: flex-start !important;
   }
 }

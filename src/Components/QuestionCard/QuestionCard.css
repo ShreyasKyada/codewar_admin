@@ -7,15 +7,18 @@
   display: flex;
   color: var(--text-color);
   margin: 1rem 0;
+  padding: 0.6rem 0;
+  transition: 0.2s all linear;
 }
 
 .challenge-card-container:hover {
   cursor: pointer;
-  box-shadow: 0 0 15px var(--box-shadow);
+  border: 2px solid var(--hover-color);
+  box-shadow: 0 0 15px var(--hover-color);
 }
 
 .card-left-container {
-  width: 70%;
+  width: 80%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -28,6 +31,7 @@
 }
 
 .challenge-card-heading {
+  word-break: break-all;
   font-size: 0.8rem;
 }
 
@@ -36,37 +40,33 @@
 }
 
 .card-right-container {
-  width: 30%;
+  width: 15%;
   box-sizing: border-box;
   padding: 0 0.5rem;
+  padding-right: 0.8rem;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
 }
 
-.btn-play,
-.button-problem {
-  box-sizing: border-box !important;
-  width: 100% !important;
-  font-size: 0.5rem !important;
-  margin: 0.6rem 0 !important;
+.question-card-delete-icon,
+.question-card-edit-icon {
+  font-size: 0.9rem !important;
+  color: var(--text-color) !important;
+  float: right !important;
+  margin: 8px 5px;
+  transition: 0.2s all linear !important;
 }
 
-.btn-play {
-  margin-bottom: 0 !important;
-}
-
-.button-problem {
-  padding: 0rem;
+.question-card-delete-icon:hover,
+.question-card-edit-icon:hover {
+  color: var(--hover-color) !important;
 }
 
 @media (max-width: 600px) {
-  .challenge-card-container {
-    flex-direction: column;
-  }
-  .card-right-container {
+  .card-left-container {
+    padding: 0.2rem 0.7rem;
     width: 100%;
+    box-sizing: border-box;
   }
-.card-left-container {
-  padding: 0.2rem .7rem;
-  width: 100%;
-  box-sizing: border-box;
-}
 }

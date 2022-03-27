@@ -6,6 +6,11 @@
   flex-direction: column;
 }
 
+.contest-card-container-skeleton {
+  width: 70%;
+  margin: 0.8rem;
+}
+
 .contest-heading {
   color: var(--text-color);
   font-size: 1rem;
@@ -26,4 +31,15 @@
 
 .circle-icon {
   font-size: 0.9rem !important;
+}
+
+@media (max-width: 800px) {
+  .contest-heading {
+    align-self: flex-start;
+    margin: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  .btn-conatiner {
+    width: 90%;
+  }
 }
